@@ -8,4 +8,11 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Лабораторная работа 5 выполнена"
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - run: pip install ruff pytest
+      - run: ruff check --config=ruff.toml ./src/
+      - run: pytest
+EOF
